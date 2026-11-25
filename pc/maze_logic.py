@@ -1,5 +1,6 @@
 """Rules and levels for the LilyGO gesture maze."""
 from dataclasses import dataclass
+from collections import Counter
 import json
 import os
 from pathlib import Path
@@ -59,6 +60,7 @@ DIRECTION_NAMES = ('Right', 'Down', 'Left', 'Up')
 PATROL_STEP_MS = 1450
 PATROL_TRAVEL_MS = 360
 SAVE_VERSION = 1
+HISTORY_LIMIT = 256
 
 
 class GestureGate:
@@ -81,6 +83,10 @@ class GestureGate:
 
 class Maze:
     def __init__(self):
+        self.move_history = ()
+        self.restart()
+
+    def restart(self):
         self.index = 0
         self.reset()
 
@@ -101,6 +107,50 @@ class Maze:
         self.cleared = False
         self.actions = 0
         self.patrol_ms = 0.
+        self.patrol_target = None
+        self.forecast_tile = None
+        self.chase_cooldown = 0
+        self.previous_direction = None
+
+    def step_from_ball(self, direction):
+        dx, dy = DIRECTIONS[direction]
+        x, y = self.ball[0] + dx, self.ball[1] + dy
+        rows = self.level.tiles
+        if 0 <= y < len(rows) and 0 <= x < len(rows[y]) and rows[y][x] != '#':
+            return x, y
+        return None
+
+    def predict_next_tile(self):
+        """Estimate P(next direction | previous direction) from successful moves."""
+        if self.previous_direction is None:
+            return None
+        counts = Counter(after for before, after in self.move_history if before == self.previous_direction)
+        candidates = []
+        for direction, count in counts.items():
+            target = self.step_from_ball(direction)
+            if target is not None and (target != self.exit or self.has_key):
+                candidates.append((count, direction == self.heading, direction, target))
+        if not candidates:
+            return None
+        count, _, _, target = max(candidates)
+        return target if count >= 2 else None
+
+    def choose_patrol_target(self, phase):
+        route = self.level.patrol
+        forward, backward = (phase + 1) % len(route), (phase - 1) % len(route)
+        self.forecast_tile = None
+        if self.chase_cooldown:
+            self.chase_cooldown -= 1
+            return forward
+        forecast = self.predict_next_tile()
+        if forecast not in route:
+            return forward
+        self.forecast_tile = forecast
+        if abs(route[backward][0] - forecast[0]) < abs(route[forward][0] - forecast[0]):
+            # Resume the patrol after one change of direction so it cannot camp on a tile.
+            self.chase_cooldown = 2
+            return backward
+        return forward
 
     @property
     def patrol_tile(self):
@@ -113,7 +163,8 @@ class Maze:
         if not route:
             return None
         phase = int(self.patrol_ms // PATROL_STEP_MS)
-        a, b = route[phase], route[(phase + 1) % len(route)]
+        target = self.patrol_target if self.patrol_target is not None else (phase + 1) % len(route)
+        a, b = route[phase], route[target]
         travel = max(0., (self.patrol_ms % PATROL_STEP_MS - (PATROL_STEP_MS - PATROL_TRAVEL_MS))
                      / PATROL_TRAVEL_MS)
         return tuple(start + (end - start) * travel for start, end in zip(a, b))
@@ -121,13 +172,25 @@ class Maze:
     def tick(self, elapsed_ms):
         if not self.level.patrol or self.cleared or elapsed_ms <= 0:
             return False
-        cycle = len(self.level.patrol) * PATROL_STEP_MS
-        self.patrol_ms = (self.patrol_ms + elapsed_ms) % cycle
-        if self.ball != self.patrol_tile:
-            return False
-        self.ball = self.level.position('S')
-        self.heading = 0
-        return True
+        caught = False
+        while elapsed_ms > 0:
+            phase = int(self.patrol_ms // PATROL_STEP_MS)
+            progress = self.patrol_ms % PATROL_STEP_MS
+            if self.patrol_target is None and progress + elapsed_ms >= PATROL_STEP_MS - PATROL_TRAVEL_MS:
+                self.patrol_target = self.choose_patrol_target(phase)
+            if progress + elapsed_ms < PATROL_STEP_MS:
+                self.patrol_ms += elapsed_ms
+                break
+            elapsed_ms -= PATROL_STEP_MS - progress
+            self.patrol_ms = self.patrol_target * PATROL_STEP_MS
+            self.patrol_target = None
+            self.forecast_tile = None
+            if self.ball == self.patrol_tile:
+                self.ball = self.level.position('S')
+                self.heading = 0
+                self.previous_direction = None
+                caught = True
+        return caught
 
     def next_level(self):
         if not self.cleared or self.final_level:
@@ -146,17 +209,19 @@ class Maze:
             return f'Heading {DIRECTION_NAMES[self.heading].lower()}.'
         if action != 'translation':
             raise ValueError(f'Unsupported action: {action}')
-        dx, dy = DIRECTIONS[self.heading]
-        x, y = self.ball[0] + dx, self.ball[1] + dy
-        rows = self.level.tiles
-        if not (0 <= y < len(rows) and 0 <= x < len(rows[y])) or rows[y][x] == '#':
+        target = self.step_from_ball(self.heading)
+        if target is None:
             return 'A wall blocks that direction.'
-        if (x, y) == self.exit and not self.has_key:
+        if target == self.exit and not self.has_key:
             return 'Collect the key to open the exit.'
-        if (x, y) == self.patrol_tile:
+        if target == self.patrol_tile:
             return 'The lantern blocks this tile. Wait for an opening.'
 
-        self.ball = (x, y)
+        self.ball = target
+        if self.previous_direction is not None:
+            pair = self.previous_direction, self.heading
+            self.move_history = (*self.move_history[-(HISTORY_LIMIT-1):], pair)
+        self.previous_direction = self.heading
         self.actions += 1
         if self.ball == self.key and not self.has_key:
             self.has_key = True
@@ -169,7 +234,9 @@ class Maze:
     def snapshot(self):
         return {'version': SAVE_VERSION, 'level': self.index, 'ball': list(self.ball),
                 'heading': self.heading, 'has_key': self.has_key, 'cleared': self.cleared,
-                'actions': self.actions, 'patrol_ms': round(self.patrol_ms)}
+                'actions': self.actions, 'patrol_ms': int(self.patrol_ms), 'patrol_target': self.patrol_target,
+                'chase_cooldown': self.chase_cooldown, 'previous_direction': self.previous_direction,
+                'move_history': [list(pair) for pair in self.move_history]}
 
     @classmethod
     def restore(cls, saved):
@@ -203,6 +270,29 @@ class Maze:
             raise ValueError('The saved patrol time is invalid.')
         cycle = len(game.level.patrol) * PATROL_STEP_MS
         game.patrol_ms = patrol_ms % cycle if cycle else 0
+        history = saved.get('move_history', [])
+        if (not isinstance(history, list) or len(history) > HISTORY_LIMIT
+                or any(not isinstance(pair, list) or len(pair) != 2
+                       or any(type(direction) is not int or direction not in range(len(DIRECTIONS))
+                              for direction in pair) for pair in history)):
+            raise ValueError('The saved movement history is invalid.')
+        game.move_history = tuple(map(tuple, history))
+        previous = saved.get('previous_direction')
+        if previous is not None and (type(previous) is not int or previous not in range(len(DIRECTIONS))):
+            raise ValueError('The saved previous movement is invalid.')
+        game.previous_direction = previous
+        cooldown = saved.get('chase_cooldown', 0)
+        if type(cooldown) is not int or not 0 <= cooldown <= 2:
+            raise ValueError('The saved chase cooldown is invalid.')
+        game.chase_cooldown = cooldown
+        target = saved.get('patrol_target')
+        if target is not None:
+            route = game.level.patrol
+            phase = int(game.patrol_ms // PATROL_STEP_MS)
+            if (type(target) is not int or not route
+                    or target not in ((phase + 1) % len(route), (phase - 1) % len(route))):
+                raise ValueError('The saved lantern target is invalid.')
+            game.patrol_target = target
         return game
 
 

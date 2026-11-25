@@ -19,7 +19,7 @@ SHADE = '#e8dfd1'
 
 
 class OrbitMazeApp:
-    def __init__(self, root, reader=None, save_path=SAVE_PATH):
+    def __init__(self, root, reader=None, save_path=SAVE_PATH, *, wireless=False):
         self.root = root
         self.save_path = save_path
         self.messages = SimpleQueue()
@@ -28,6 +28,8 @@ class OrbitMazeApp:
         self.gate = GestureGate()
         self.screen = 'menu'
         self.notice = ''
+        self.link_notice = ''
+        self.wireless = wireless
         self.saved_city = None
         try:
             loaded = load_game(save_path)
@@ -137,7 +139,7 @@ class OrbitMazeApp:
 
     def start(self):
         if self.maze.cleared and self.maze.final_level:
-            self.maze = Maze()
+            self.maze.restart()
             self.motion = self.turn = None
             self.tutorial_seen = False
             self.dirty = True
@@ -196,13 +198,13 @@ class OrbitMazeApp:
     def next_city(self):
         if self.maze.next_level():
             self.motion = self.turn = None
-            self.notice = ('Watch the lantern on the marked tiles.' if self.maze.level.patrol
+            self.notice = ('The lantern predicts moves on the marked tiles.' if self.maze.level.patrol
                            else 'Take the waterfront route and collect the key.')
             self.gate.reset()
             self.dirty = True
             self.invalidate()
         elif self.maze.cleared and self.maze.final_level:
-            self.open_menu()
+            self.start()
 
     def action(self, gesture):
         self.last_gesture = GESTURE_NAMES.get(gesture, gesture)
@@ -244,6 +246,7 @@ class OrbitMazeApp:
             if kind == 'connected':
                 self.port, self.model_id = value
                 self.port_state = 'connected'
+                self.link_notice = ''
                 self.last_serial = now
                 self.tracking = False
                 self.gate.reset()
@@ -271,8 +274,7 @@ class OrbitMazeApp:
                 self.gate.reset()
                 self.tracking = False
                 self.last_gesture = ''
-                if value and self.screen == 'menu':
-                    self.notice = value
+                self.link_notice = value or ''
                 self.invalidate()
         if self.port_state == 'connected' and self.last_serial is not None and now-self.last_serial > 4:
             self.port_state = 'paused'
@@ -324,6 +326,8 @@ class OrbitMazeApp:
             return 'Keyboard mode', MUTED
         if self.port_state == 'paused':
             return 'Waiting for IMU data', GOLD
+        if self.wireless:
+            return 'Connect to OrbitMaze Wi-Fi', GOLD
         return 'Connect LilyGO via USB', GOLD
 
     def draw(self, now=None):
@@ -384,8 +388,8 @@ class OrbitMazeApp:
             c.itemconfigure('key', state='hidden' if game.has_key else 'normal')
             c.itemconfigure(fields['exit_tile'], fill='#cce6c0' if game.has_key else '#ede4cf')
             c.itemconfigure(fields['exit_label'], fill=ACCENT if game.has_key else MUTED)
-        notice = self.notice or ('Hold still until Ready appears.' if self.port_state == 'connected'
-                                 else 'Use Q, R and F or connect the LilyGO.')
+        notice = self.link_notice or self.notice or ('Hold still until Ready appears.' if self.port_state == 'connected'
+                                                     else 'Use Q, R and F or connect the LilyGO.')
         c.itemconfigure(fields['notice'], text=notice, fill=RED if self.exit_pending else INK)
         c.itemconfigure(fields['input'], text=f'Last input: {self.last_gesture}' if self.last_gesture else '')
 
@@ -477,8 +481,8 @@ class OrbitMazeApp:
         self.draw_feedback(732,515,337,98)
         self.button(732,628,121,37,'Menu  /  Esc',self.open_menu)
         if game.level.patrol:
-            s.oval(944,644,7,7,RED)
-            s.text(1068,647,'Lantern patrol',13,color=RED,align='e',weight='bold')
+            self.fields['lantern_status'] = s.text(1068,647,'Predictive lantern',13,
+                                                   color=RED,align='e',weight='bold')
 
         if self.tutorial:
             self.draw_guide()
@@ -562,6 +566,9 @@ class OrbitMazeApp:
         size = self.board_box[2]
         self.ball_at = self.lantern_at = (0, 0)
         if game.level.patrol:
+            self.forecast_at = None
+            self.forecast_outline = self.canvas.create_rectangle(0, 0, 0, 0,
+                outline='#9b3c32', width=max(2, s.scale*3), dash=(4, 3), state='hidden')
             s.tag = 'lantern'
             self.lantern_glow = s.oval(0,0,0,0,'#df9663')
             s.oval(-size*.24,-size*.24,size*.48,size*.48,'#8d4138')
@@ -581,6 +588,15 @@ class OrbitMazeApp:
         size = self.board_box[2]
         lantern = game.patrol_position
         if lantern is not None:
+            forecast = game.forecast_tile
+            if forecast != self.forecast_at:
+                if forecast is not None:
+                    fx, fy = self.cell(forecast)
+                    extent = size*.43
+                    c.coords(self.forecast_outline, *s.points((fx-extent,fy-extent,fx+extent,fy+extent)))
+                c.itemconfigure(self.forecast_outline, state='normal' if forecast else 'hidden')
+                c.itemconfigure(self.fields['lantern_status'], text='Predicted tile marked' if forecast else 'Predictive lantern')
+                self.forecast_at = forecast
             lx, ly = self.cell(lantern)
             ox, oy = self.lantern_at
             if (lx, ly) != self.lantern_at:
@@ -627,8 +643,8 @@ class OrbitMazeApp:
         s.round(109,238,510,244,17,WHITE)
         s.text(134,262,self.maze.level.name.upper(),14,color=GOLD,weight='bold')
         s.text(136,293,'Journey complete' if final else 'City cleared',37,face=DISPLAY,weight='bold')
-        text=('You reached the last gate in Nicosia.' if final
+        text=('Slide again to start in Pafos.' if final
               else f'Next stop: {LEVELS[self.maze.index+1].name}.')
         s.text(137,348,text,17,color=MUTED)
-        self.button(136,394,249,44,'Back to menu  /  Slide' if final else 'Next city  /  Slide',
+        self.button(136,394,249,44,'Play again  /  Slide' if final else 'Next city  /  Slide',
                     self.next_city,dark=True)

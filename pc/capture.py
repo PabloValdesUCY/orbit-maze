@@ -42,6 +42,20 @@ def read_line(port):
     return port.readline().decode('ascii', errors='replace').strip()
 
 
+def parse_status(line):
+    fields = line.split(',')
+    if fields[0] != 'STATUS':
+        return None
+    if len(fields) != 6 or fields[1] != 'imu1' or not fields[2] or any(
+        flag not in ('0', '1') for flag in fields[3:]
+    ):
+        raise RuntimeError(f'Unrecognized firmware status: {line}')
+    return {
+        'protocol': fields[1], 'model_run_id': fields[2], 'pmu_ready': fields[3] == '1',
+        'imu_ready': fields[4] == '1', 'oled_initialized': fields[5] == '1',
+    }
+
+
 def read_status(port):
     port.reset_input_buffer()
     deadline = time.monotonic() + 3
@@ -51,18 +65,9 @@ def read_status(port):
         if now >= next_query:
             port.write(b'?')
             next_query = now + 0.5
-        line = read_line(port)
-        if not line.startswith('STATUS,'):
-            continue
-        fields = line.split(',')
-        if len(fields) != 6 or fields[1] != 'imu1' or not fields[2] or any(
-            flag not in ('0', '1') for flag in fields[3:]
-        ):
-            raise RuntimeError(f'Unrecognized firmware status: {line}')
-        return {
-            'protocol': fields[1], 'model_run_id': fields[2], 'pmu_ready': fields[3] == '1',
-            'imu_ready': fields[4] == '1', 'oled_initialized': fields[5] == '1',
-        }
+        status = parse_status(read_line(port))
+        if status is not None:
+            return status
     raise RuntimeError('No STATUS from the board. Check the port and upload the current project firmware.')
 
 

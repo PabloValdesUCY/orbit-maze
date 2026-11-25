@@ -18,7 +18,17 @@ py -3.12 -m venv .venv
 
 Press **F** or **Enter** to start. In a level, **Q** and **R** turn left and right. **F** moves one tile in the arrow's direction and **Esc** opens the menu. Collect the key and reach the exit in each city. The Nicosia lantern patrol adds a timing challenge.
 
-### Play with the LilyGO
+### Play wirelessly with the LilyGO
+
+Upload the current firmware once using a USB data cable. Power the LilyGO with a compatible battery or a USB power bank for a wireless demo. Connect the PC to the board's **OrbitMaze** Wi-Fi network with the demo password `orbit-maze-428`, then launch the game in Wi-Fi mode:
+
+```powershell
+.\.venv\Scripts\python.exe .\pc\maze.py --wifi
+```
+
+Hold the board level until **Wi-Fi • Ready** appears. The board sends raw IMU samples and its on-device predictions over TCP to the same gesture detector used for USB play. The OLED keeps displaying the latest classification.
+
+### Play with the LilyGO over USB
 
 Connect a LilyGO T-Beam S3 Supreme with the supplied firmware, then run `maze.py` without `--keyboard`. Install the [PlatformIO IDE](https://platformio.org/install/ide?install=vscode) if you need to flash the firmware. From the repository root, use `pio run -e t-beams3-supreme` to build and `pio run -e t-beams3-supreme -t upload --upload-port BOARD_PORT` to upload, substituting the port from `capture.py --list`. Close Serial Monitor before starting the game. Let the board settle horizontally with its OLED facing up until **Ready** appears.
 
@@ -30,6 +40,8 @@ Connect a LilyGO T-Beam S3 Supreme with the supplied firmware, then run `maze.py
 | Tilt up and hold | Open the menu | — |
 
 Hold the board still between gestures. The gesture profile in `data/orbit_profile.json` was selected on the recorded device and operator. Use keyboard mode for a hardware-free walkthrough.
+
+The lantern in Nicosia uses the player's successful moves to estimate a next tile. It can reverse its patrol toward that tile on the marked corridor. The game keeps up to 256 movement transitions in the local save. After clearing Nicosia, hold still and slide once to start a new route from Pafos.
 
 ## Data and results
 

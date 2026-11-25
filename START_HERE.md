@@ -68,7 +68,24 @@ Perform each prompted gesture for 12 seconds and observe the OLED. The script ch
 
 ## 5. Play Orbit Maze
 
-Orbit Maze uses the model running on the LilyGO. Close Serial Monitor, the recorder and the demo before launching the game, so it can open the serial port. The game looks for the board over USB and reconnects if it becomes available again. Use `--port BOARD_PORT` to select a specific board.
+Orbit Maze uses the classifier and raw sensor stream from the LilyGO. The latest firmware can send both over Wi-Fi or USB.
+
+### Play over Wi-Fi
+
+1. Build and upload the current firmware once using PlatformIO and a USB data cable.
+2. For a cable-free demo, power the LilyGO from a compatible battery or USB power bank. The OLED shows **Wi-Fi: OrbitMaze** while waiting for a game connection.
+3. On the PC, join **OrbitMaze** with the demo password `orbit-maze-428`. This is the board's local access point. Windows may show **No internet** while connected. [Espressif Wi-Fi AP documentation](https://docs.espressif.com/projects/arduino-esp32/en/latest/api/wifi.html#wi-fi-ap)
+4. Launch the game in Wi-Fi mode and hold the LilyGO flat until the header shows **Wi-Fi • Ready**.
+
+```powershell
+.\.venv\Scripts\python.exe .\pc\maze.py --wifi
+```
+
+The game connects to `192.168.4.1:8765` and retries after a dropped connection. The board sends the same timestamped `DATA` and `RESULT` frames as it does over USB. The keyboard and mouse remain available while the board reconnects.
+
+### Play over USB
+
+Close Serial Monitor, the recorder and the demo before launching the game. The game looks for the board over USB and reconnects if it becomes available again. Use `--port BOARD_PORT` to select a specific board.
 
 ```powershell
 .\.venv\Scripts\python.exe .\pc\maze.py
@@ -84,7 +101,9 @@ Hold the board still and level, OLED facing up, until **Ready** appears. From th
 
 In the maze, **turn left or right** to rotate the arrow 90° in that direction, and **slide** to move one tile along the arrow. The device indicator shows **Reading gesture** while the game measures the motion. The status panel shows the last accepted input and any obstacle that blocked the move. Rest briefly until **Ready** returns. **Tilt up and hold** to open the menu, or press **Esc**. The game combines the signed angle of a short rotation with lateral acceleration after correcting for the board's tilt. It can establish its initial reference from a model rest prediction or a sustained level hold measured by the IMU. The OLED shows the board's full-window prediction.
 
-The route visits **Pafos**, **Limasol** and **Nicosia**, in that order. Pafos opens with a controls tutorial. Collect a key to open the exit in each city, then slide again to advance. In Nicosia, watch the moving lantern on the marked tiles. It sends you back to the entrance if it catches you, and you keep the key. Saving preserves the current city, position, arrow and key. The save stays on this PC in `data/orbit_save.json`.
+The route visits **Pafos**, **Limasol** and **Nicosia**, in that order. Pafos opens with a controls tutorial. Collect a key to open each exit. Slide again on the results screen to advance or, after winning in Nicosia, to start a new route directly in Pafos.
+
+In Nicosia the lantern stays on the marked corridor. The game records the directions of successful moves and counts how often each direction follows the last one. When at least two observations support a legal next tile in the corridor, an outline shows the predicted tile briefly. The lantern can head toward it even if that reverses its patrol. After a reversal it follows its normal route for two steps. Getting caught takes you back to the entrance with your key. Saving stores the route state and up to 256 movement transitions locally in `data/orbit_save.json`.
 
 The original artwork is inspired by [Pafos Harbour and its mosaics](https://www.visitcyprus.com/discover-cyprus/regions-cities/pafos-regions-cities/pafos-paphos-city/), [the Molos seafront and marina](https://www.visitcyprus.com/wp-content/uploads/files/MAPS/CITY_TOUR_MAPS/Limassol_Map.pdf), and [Nicosia's Venetian walls and Famagusta Gate](https://www.nicosia.org.cy/en-GB/discover/cultural-centers/famagusta-gate/).
 
