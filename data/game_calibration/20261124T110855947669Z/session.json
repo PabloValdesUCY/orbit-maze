@@ -1,0 +1,102 @@
+{
+  "status": "complete",
+  "trials": [
+    {
+      "file": "01_translation.log",
+      "expected": "translation",
+      "go_ms": 297941,
+      "partition": "calibration"
+    },
+    {
+      "file": "01_rotation_left.log",
+      "expected": "rotation_left",
+      "go_ms": 329971,
+      "partition": "calibration"
+    },
+    {
+      "file": "01_rotation_right.log",
+      "expected": "rotation_right",
+      "go_ms": 343691,
+      "partition": "calibration"
+    },
+    {
+      "file": "02_rotation_right.log",
+      "expected": "rotation_right",
+      "go_ms": 358021,
+      "partition": "calibration"
+    },
+    {
+      "file": "02_translation.log",
+      "expected": "translation",
+      "go_ms": 374571,
+      "partition": "calibration"
+    },
+    {
+      "file": "02_rotation_left.log",
+      "expected": "rotation_left",
+      "partition": "calibration",
+      "go_ms": 29844
+    },
+    {
+      "file": "03_rotation_left.log",
+      "expected": "rotation_left",
+      "partition": "calibration",
+      "go_ms": 46034
+    },
+    {
+      "file": "03_rotation_right.log",
+      "expected": "rotation_right",
+      "partition": "calibration",
+      "go_ms": 60804
+    },
+    {
+      "file": "03_translation.log",
+      "expected": "translation",
+      "partition": "calibration",
+      "go_ms": 75524
+    },
+    {
+      "file": "04_translation.log",
+      "expected": "translation",
+      "partition": "validation",
+      "go_ms": 85614
+    },
+    {
+      "file": "04_rotation_right.log",
+      "expected": "rotation_right",
+      "partition": "validation",
+      "go_ms": 96564
+    },
+    {
+      "file": "04_rotation_left.log",
+      "expected": "rotation_left",
+      "partition": "validation",
+      "go_ms": 106194
+    },
+    {
+      "file": "05_rotation_left.log",
+      "expected": "rotation_left",
+      "partition": "validation",
+      "go_ms": 121534
+    },
+    {
+      "file": "05_translation.log",
+      "expected": "translation",
+      "partition": "validation",
+      "go_ms": 139264
+    },
+    {
+      "file": "05_rotation_right.log",
+      "expected": "rotation_right",
+      "partition": "validation",
+      "go_ms": 149134
+    }
+  ],
+  "device": {
+    "protocol": "imu1",
+    "model_run_id": "20261123T144139418921Z",
+    "pmu_ready": true,
+    "imu_ready": true,
+    "oled_initialized": true
+  }
+}

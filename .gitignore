@@ -1,0 +1,9 @@
+.pio/
+.venv/
+__pycache__/
+*.pyc
+.vscode/
+data/orbit_save.json
+data/.orbit-save-*.tmp
+data/.gesture-profile-*.tmp
+

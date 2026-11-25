@@ -1,0 +1,40 @@
+{
+  "run_id": "20261123T144139418921Z",
+  "serial_log": "20261123T144243356330Z.log",
+  "samples": 705,
+  "complete_predictions_checked": 6,
+  "matches_python": 6,
+  "predictions": [
+    {
+      "label": "rest",
+      "end_ms": 29358,
+      "span_ms": 1140
+    },
+    {
+      "label": "rest",
+      "end_ms": 30508,
+      "span_ms": 1140
+    },
+    {
+      "label": "rest",
+      "end_ms": 31628,
+      "span_ms": 1110
+    },
+    {
+      "label": "rest",
+      "end_ms": 32778,
+      "span_ms": 1140
+    },
+    {
+      "label": "rest",
+      "end_ms": 33898,
+      "span_ms": 1110
+    },
+    {
+      "label": "rest",
+      "end_ms": 35048,
+      "span_ms": 1140
+    }
+  ],
+  "median_span_ms": 1140.0
+}

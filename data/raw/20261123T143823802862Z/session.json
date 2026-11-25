@@ -1,0 +1,31 @@
+{
+  "session": "20261123T143823802862Z",
+  "port": "COM3",
+  "seconds_per_class": 30,
+  "status": "complete",
+  "device": {
+    "protocol": "imu1",
+    "model_run_id": "untrained",
+    "pmu_ready": true,
+    "imu_ready": true,
+    "oled_initialized": true
+  },
+  "gestures": {
+    "rest": {
+      "samples": 2640,
+      "elapsed_seconds": 30.0,
+      "gaps_over_100ms": 0
+    },
+    "rotation": {
+      "samples": 2641,
+      "elapsed_seconds": 30.0,
+      "gaps_over_100ms": 0
+    },
+    "translation": {
+      "samples": 2640,
+      "elapsed_seconds": 30.0,
+      "gaps_over_100ms": 0
+    }
+  },
+  "notes": ""
+}

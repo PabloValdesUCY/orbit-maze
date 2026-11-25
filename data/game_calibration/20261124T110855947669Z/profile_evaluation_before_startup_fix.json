@@ -1,0 +1,93 @@
+{
+  "source": "20261124T110855947669Z",
+  "profile": {
+    "decision_ms": 140,
+    "turn_degrees": 2.4,
+    "turn_per_g": 105.0,
+    "slide_rms_g": 0.0048,
+    "yaw_sign": 1
+  },
+  "calibration": {
+    "total": 9,
+    "correct": 5,
+    "missed": 4,
+    "incorrect": 0
+  },
+  "validation": {
+    "total": 6,
+    "correct": 3,
+    "missed": 3,
+    "incorrect": 0
+  },
+  "validation_decision_time": {
+    "median_ms": 140,
+    "max_ms": 140
+  },
+  "baseline_validation": {
+    "total": 6,
+    "correct": 3,
+    "missed": 3,
+    "incorrect": 0
+  },
+  "baseline_decision_time": {
+    "median_ms": 200,
+    "max_ms": 210
+  },
+  "validation_trials": [
+    {
+      "file": "04_translation.log",
+      "expected": "translation",
+      "actions": [],
+      "correct": false
+    },
+    {
+      "file": "04_rotation_right.log",
+      "expected": "rotation_right",
+      "actions": [],
+      "correct": false
+    },
+    {
+      "file": "04_rotation_left.log",
+      "expected": "rotation_left",
+      "actions": [
+        {
+          "gesture": "rotation_left",
+          "after_go_ms": 850,
+          "decision_ms": 140
+        }
+      ],
+      "correct": true
+    },
+    {
+      "file": "05_rotation_left.log",
+      "expected": "rotation_left",
+      "actions": [
+        {
+          "gesture": "rotation_left",
+          "after_go_ms": 670,
+          "decision_ms": 140
+        }
+      ],
+      "correct": true
+    },
+    {
+      "file": "05_translation.log",
+      "expected": "translation",
+      "actions": [],
+      "correct": false
+    },
+    {
+      "file": "05_rotation_right.log",
+      "expected": "rotation_right",
+      "actions": [
+        {
+          "gesture": "rotation_right",
+          "after_go_ms": 560,
+          "decision_ms": 140
+        }
+      ],
+      "correct": true
+    }
+  ],
+  "eligible_to_install": false
+}

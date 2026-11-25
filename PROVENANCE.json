@@ -1,0 +1,841 @@
+{
+  "source": "EPL428 LAB03 starter package, EPL428_Lab3_stu",
+  "files": [
+    {
+      "path": "boards/t-beams3-supreme.json",
+      "sha256": "686adbb81a3e6c6565ac8586b6f74f6fa6eaca0df99db50d436b95c37ac968c7"
+    },
+    {
+      "path": "lib/Lab3Support/library.json",
+      "sha256": "8df84e0494cb912a429b07a6cbfef7293313a8bdc2b7ecacbd08303531dc8986"
+    },
+    {
+      "path": "lib/SensorsLib/keywords.txt",
+      "sha256": "eec2411328ba48e5745586e9cdfb3a3f541bdcf6ce377a0a0c0ecd433b683a43"
+    },
+    {
+      "path": "lib/SensorsLib/library.json",
+      "sha256": "4e834bb99c69cc7cfdae6f0c9258c995e03e699e9b9c71867cb778054b2f4a51"
+    },
+    {
+      "path": "lib/SensorsLib/library.properties",
+      "sha256": "6fed190be64e4e1d5bc37a53252d33900abb0c6bcf40ffe2e767fa001c23b5ac"
+    },
+    {
+      "path": "lib/SensorsLib/LICENSE",
+      "sha256": "08c3c586bb218337a79867e6fed917c65ee041858e93cb856c4d610e3d0dc413"
+    },
+    {
+      "path": "lib/U8g2/keywords.txt",
+      "sha256": "5cacf35f136ef3bdfb190e982a786b634ffda6910a9e95a3e3cdb57239aa91fe"
+    },
+    {
+      "path": "lib/U8g2/library.properties",
+      "sha256": "88e496a5583c6e460932aeaaff67c58159d73d96d132bb0cda7f7b6f347945b1"
+    },
+    {
+      "path": "lib/U8g2/LICENSE",
+      "sha256": "8cf13e2fabfb6665de2132f148011fcf4252106f464ea520c001647a71934f5e"
+    },
+    {
+      "path": "lib/XPowersLib/keywords.txt",
+      "sha256": "7a7dd1f26fcf9643158047fbf40711d87bf37b7fbc015068b9f20c37e5b9dfb2"
+    },
+    {
+      "path": "lib/XPowersLib/library.json",
+      "sha256": "78de79d8bd30cb1ebaccb03014411c1cdbcd7c1177d1487fb827e6594d4837d1"
+    },
+    {
+      "path": "lib/XPowersLib/library.properties",
+      "sha256": "36eb56f3b7eb497ac08f92c51d0eb4736cf02836102e9b28716f3112286ad70d"
+    },
+    {
+      "path": "lib/XPowersLib/LICENSE",
+      "sha256": "08c3c586bb218337a79867e6fed917c65ee041858e93cb856c4d610e3d0dc413"
+    },
+    {
+      "path": "lib/Lab3Support/src/Lab3Config.h",
+      "sha256": "0add7d31b69a078867ababd4eed656d371a89a31b5cb940ac6f435d5d1e0981b"
+    },
+    {
+      "path": "lib/Lab3Support/src/Lab3Support.cpp",
+      "sha256": "9cead5ff588338859a468d3dd5e7fc9aebfadcf618aae68ad544d1f9ed8c8f4d"
+    },
+    {
+      "path": "lib/Lab3Support/src/Lab3Support.h",
+      "sha256": "dc77667dcf54c03ba52025e405df0e4b2692323886a3013cca87cde8389648d8"
+    },
+    {
+      "path": "lib/SensorsLib/src/ExtensionIOXL9555.hpp",
+      "sha256": "21fe23dec1964d508cb697f090cd7e1ab841252f70004f8b032b64fb36b4ecaa"
+    },
+    {
+      "path": "lib/SensorsLib/src/SensorBHI260AP.hpp",
+      "sha256": "0b8c47e83fa720aa4a3574013f301979c8d0effb8a8064b15463406ef36e02d4"
+    },
+    {
+      "path": "lib/SensorsLib/src/SensorBMA423.hpp",
+      "sha256": "5854d72dbcad17a2eb5c0bf2af6f825f626a56180ca7000eed354eb330ee3aa8"
+    },
+    {
+      "path": "lib/SensorsLib/src/SensorCM32181.hpp",
+      "sha256": "41f79fde5d580a4cd732c3b35720fa91250a15d3c0281eac771afc877869995f"
+    },
+    {
+      "path": "lib/SensorsLib/src/SensorCommon.tpp",
+      "sha256": "9ce277a5ff8028a26cbab9ced5f7b3f976390cd1d909fc14921b4b6cbd379a72"
+    },
+    {
+      "path": "lib/SensorsLib/src/SensorDRV2605.hpp",
+      "sha256": "5f2cde81c05712117b0225b86378b5a9c22ac471fe1e622957a00d6a8c9aed34"
+    },
+    {
+      "path": "lib/SensorsLib/src/SensorPCF85063.hpp",
+      "sha256": "5773470d73e01747050dca8a5048da6dfd16392363ef7e15763b673ce78bce30"
+    },
+    {
+      "path": "lib/SensorsLib/src/SensorPCF8563.hpp",
+      "sha256": "5219a06aabf03b888895ecc93c088ad110b3227bd47e17fcc31a17b493ce089a"
+    },
+    {
+      "path": "lib/SensorsLib/src/SensorQMC6310.hpp",
+      "sha256": "39bc7309ce8eb3198af7e8005746b1a142c11687c051a5727ee516d4a522e549"
+    },
+    {
+      "path": "lib/SensorsLib/src/SensorQMI8658.hpp",
+      "sha256": "016b731a6bf2102c3394f619ed141dee75cbb3e1dca89df17f6a9d23409ab038"
+    },
+    {
+      "path": "lib/SensorsLib/src/SensorRTC.h",
+      "sha256": "14a2976a54f961e7c6f7a248834bfcad338634b521dfa737ec4eec76ebef595a"
+    },
+    {
+      "path": "lib/SensorsLib/src/TouchDrvAuto.hpp",
+      "sha256": "a30e94752122f9458cb3160f1c5ff9fc19e55d1c563129b523aa59361fa700d0"
+    },
+    {
+      "path": "lib/SensorsLib/src/TouchDrvCHSC5816.hpp",
+      "sha256": "adb29d4bb651f7e39307cfcc0739940e34677c00c08a628e248fd5ecc1cb6003"
+    },
+    {
+      "path": "lib/SensorsLib/src/TouchDrvCSTXXX.hpp",
+      "sha256": "00e11d4acdadfeb061cf0dcfd16b9fed9b72abcd85f3c873fcb7019ce0fb6aa4"
+    },
+    {
+      "path": "lib/SensorsLib/src/TouchDrvFT6X36.hpp",
+      "sha256": "34ab561f6a805f99eb58b3f0673ce51981713146bc7e950da43df6487d02b1e5"
+    },
+    {
+      "path": "lib/SensorsLib/src/TouchDrvGT911.hpp",
+      "sha256": "c6239d12061655c1a74dc8320c4afa70c64a18b7861a8e5537968122161c2d71"
+    },
+    {
+      "path": "lib/SensorsLib/src/TouchDrvInterface.hpp",
+      "sha256": "11c927b511b01e83dbcafd4387f6395a54245807cc4c1c043de3fa5d74e82ab0"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhi3.c",
+      "sha256": "f5d36ad9de905a37f249183cd9c69cfd551551b91ff18d60f721402d58b8af54"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhi3.h",
+      "sha256": "5d1dc4142fa7e8e75d02e9141a1133ac7346207cbb64109c414cb3c23e88ea1c"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhi3_defs.h",
+      "sha256": "b613e94e4521db2b1be4acaa143bbf2206c14d6af287ac0babf1b83ee8c9dcad"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhi3_multi_tap.c",
+      "sha256": "b1a2766b4f92df33418e7d128d1f5d1d358fb80110103ac6391ac6d4cc927e3d"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhi3_multi_tap.h",
+      "sha256": "0f5c3245438eca0f490cb019f59cda785447c1e49876f4f2b2fd900ca1076f9c"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhi3_multi_tap_defs.h",
+      "sha256": "9c8414b15fa5f3fda626b9a67756ce5ca553294e7699e3cac77348d5544a9de0"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2.c",
+      "sha256": "baaf19b949ae6206993505fadc16964de22a5cf5ea47f1046102ebde68e5abdb"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2.h",
+      "sha256": "898150d1e2fdad7156894afb314b795676d1a24a049c9838c903f585bf1ac16f"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_bsec.c",
+      "sha256": "fb5788015788efd5d2bbb934980c210988387f791a7ccfc48089bcf637feb4a4"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_bsec.h",
+      "sha256": "c37dd6530c0a6049f2aaa5cda63e6066275ee8fcfddc04bd6dc7016989cd0a72"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_defs.h",
+      "sha256": "53c72c78fee6e0c391fee7d3c3c93a4beea58dc8a86af75be83dbe51017354cf"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_head_tracker.c",
+      "sha256": "abcfaabd2a6b8e9872c4f44b6cba93011d074d1a7988927c83002186b403be02"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_head_tracker.h",
+      "sha256": "0227ab425fc9d513984a6fc3edd9ffc6a9d2ac5874a1130e42442b34f8640578"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_head_tracker_defs.h",
+      "sha256": "1d5fa3a556f9ae1cb0fc1c1dfd90810985cf27d5d1236bf659ce4719d8694c57"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_hif.c",
+      "sha256": "10dc10e0121b6ed512343d3dc0e1a5e893664bf60f4f84022462dfc5fab05867"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_hif.h",
+      "sha256": "3acbf67ed439078c539e5ba90155c588347e380b314fa731d5efcf01f66b6a55"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_klio.c",
+      "sha256": "071807c7059ce924dce43635cd4f6073a84d8e10758bf3d7b481e55a44978951"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_klio.h",
+      "sha256": "4ee99f4e3b3828a0418637dc4c54afccd352e0e96937373d47594eb7e4f862f0"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_klio_defs.h",
+      "sha256": "2a0ff96a68f9f155e525b434e39e73c68601167c302b2d47dce1af60e127e047"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_parse.c",
+      "sha256": "6e37fda347640b17c60f6fc06202c41ef282cd1a8c031168f09d6e13295ecfaf"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_parse.h",
+      "sha256": "f81cbd4e4ae595577b03735eb8aca597914983b58930b7a6f9f081d09dd708dc"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_swim.c",
+      "sha256": "e866858da8d764027230a43f292aa9274bffd8b3ff73549026c69c7d7585f599"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_swim.h",
+      "sha256": "2c5d1ea75b0128db0858c93efb029d76df54a1b21a16d6fc69680cf084601bde"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/bhy2_swim_defs.h",
+      "sha256": "5f8657726fb070a1d7104d18767b95218c29c1bd51842e99621a5e0509d319ca"
+    },
+    {
+      "path": "lib/SensorsLib/src/REG/BMA423Constants.h",
+      "sha256": "8d42732191525c367ebcfe1cd02241c7e8a6c1f59ba4288a6b020dc806ee72e1"
+    },
+    {
+      "path": "lib/SensorsLib/src/REG/CHSC5816Constants.h",
+      "sha256": "7e246d8a0974372e6f9e10afe22cd4026b36b9046c4ab23fc2d0b6006dbfefa1"
+    },
+    {
+      "path": "lib/SensorsLib/src/REG/CM32181Constants.h",
+      "sha256": "d5a1312ac8b72676b51bcaaafbea198e7cdf13ee1298bc258cec39330d258e8c"
+    },
+    {
+      "path": "lib/SensorsLib/src/REG/CSTxxxConstants.h",
+      "sha256": "a51e1ef9957792a7c777a5b93c012d97bd1a2b98b9bc9c56ebae06b6993e2bb0"
+    },
+    {
+      "path": "lib/SensorsLib/src/REG/DRV2605Constants.h",
+      "sha256": "7ef568218210cdeb6980fa6dbd2aecd2f2594fdeb316a43f0f1b485fca8a8a88"
+    },
+    {
+      "path": "lib/SensorsLib/src/REG/FT6X36Constants.h",
+      "sha256": "15f8a561860c1c9c7144bdd441678840f56a85e8400e7c143faa6274921eb08f"
+    },
+    {
+      "path": "lib/SensorsLib/src/REG/GT911Constants.h",
+      "sha256": "3935f64fb34629f20204680794bcd04a4e949e35eaead60eadd3b60540bd5d2b"
+    },
+    {
+      "path": "lib/SensorsLib/src/REG/MPU6886Constants.h",
+      "sha256": "9d73a7df795421a345a7bad765a6090c3fb27702ec2ceae56474ab94316f46b3"
+    },
+    {
+      "path": "lib/SensorsLib/src/REG/PCF85063Constants.h",
+      "sha256": "9e87dfe8b366568f1e36d4d7a4cdcab35c9f33c069504bc41a191872c9f4a94d"
+    },
+    {
+      "path": "lib/SensorsLib/src/REG/PCF8563Constants.h",
+      "sha256": "0e4c4a4b4c8228a6361b97bc35bb11cd568e4a304532d671580a12fe009a44d1"
+    },
+    {
+      "path": "lib/SensorsLib/src/REG/QMC6310Constants.h",
+      "sha256": "cb82cf6327102fcf3c9a48045e8963d9273c0eda4819548eb37eb9aaaa80c39f"
+    },
+    {
+      "path": "lib/SensorsLib/src/REG/QMI8658Constants.h",
+      "sha256": "d13798788734679727aa29b6da127362d5c14bb5aa8887d1c3b1ed3e9aa5b64a"
+    },
+    {
+      "path": "lib/SensorsLib/src/REG/XL9555Constants.h",
+      "sha256": "4477edaf6d481e0bcba6632f77859a197fa1cc3177f246d85850f31c27ff5512"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/common/common.cpp",
+      "sha256": "f736a343da3a73e2e78d9084f4b39589a20492951af3a50384a2ffc47fbad2ff"
+    },
+    {
+      "path": "lib/SensorsLib/src/bosch/common/common.h",
+      "sha256": "8712ada0e6e1a784f274902af8ac4cc7b4f97f5ad05c1733b323afc83612552b"
+    },
+    {
+      "path": "lib/U8g2/src/MUIU8g2.h",
+      "sha256": "6011274fcc2dd673160c766d15482f7b0426a40db77caa5932cb3d02caf6a965"
+    },
+    {
+      "path": "lib/U8g2/src/U8g2lib.cpp",
+      "sha256": "c32caddaddf5c06f1f0d54b3ae20393ecc2fad5ba6bef80a40b92c524f9e9680"
+    },
+    {
+      "path": "lib/U8g2/src/U8g2lib.h",
+      "sha256": "fc30b7f9e48331f20c3258e002821f759883f3d15bb432ce4a8fffa293e61e04"
+    },
+    {
+      "path": "lib/U8g2/src/U8x8lib.cpp",
+      "sha256": "654e0ac28501ca6420794186a6942a3265fd5fdc23cfb3ed41585fa7efecdc23"
+    },
+    {
+      "path": "lib/U8g2/src/U8x8lib.h",
+      "sha256": "5e45853ff1d6afa43ad78ef33c9a6668305c9751df4399bf6842178a4bfa33a1"
+    },
+    {
+      "path": "lib/U8g2/src/clib/mui.c",
+      "sha256": "f928f28892aac582b39dbf039c55dcbb0c4db12fbcf20b56ee5c840182b3b07b"
+    },
+    {
+      "path": "lib/U8g2/src/clib/mui.h",
+      "sha256": "de0932b1664a82c5a3698a5a7463eae715c834b0f0ad68fc5c41077bc55b038d"
+    },
+    {
+      "path": "lib/U8g2/src/clib/mui_u8g2.c",
+      "sha256": "f2d648f722f42a42b4c3356e11ba1864b67e34ac4d624cf7fd36a54bcc682593"
+    },
+    {
+      "path": "lib/U8g2/src/clib/mui_u8g2.h",
+      "sha256": "4fbb5d9a08d7c784da2c3d96ab07f5aae454fec7892ce3cee3df4fd1b5f892a1"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2.h",
+      "sha256": "695b81b6752eb1ca7cb7d57a0824d6a05d0738e6eeb6a3449c5dff8f55af2154"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_bitmap.c",
+      "sha256": "7f8a0ed2ceb6d89f3c5f745d3b86eda67b84a96cdb0fd0421b509ce9674d1d93"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_box.c",
+      "sha256": "d329109913b00cfc42038cec55c07b0d8faf50e5995808fa0e0c132a5afd37c5"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_buffer.c",
+      "sha256": "9ca065a47345bb6bba3f7a81cad60ad7a15c3f2ca926137ad20f1e0ef1df4609"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_button.c",
+      "sha256": "2011e2e26636fbaeca46edf9d4942fe88aa5f90a83a7ebac536d4f64f0db7cd5"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_circle.c",
+      "sha256": "6fbcc0dea8c64389ae6537f3e97722edfb85730480fe39747cf4aa1ebd717148"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_cleardisplay.c",
+      "sha256": "e1ca6ab2e977d9b1e6c72e020c80f6ea38dcab61eb9177e7b0b68ea5c6847c00"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_d_memory.c",
+      "sha256": "374d7b2ef578eb399901f775156c8c84cbc302dd8712f53041a66de68c68d776"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_d_setup.c",
+      "sha256": "2b208d9d4d16f71799fcbb9153522b960203c5d65ee90221347dc1737bcc81c1"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_font.c",
+      "sha256": "9a31fb26f1a7e46dd99b34e0d8f0bad41d4e26be25e8e3b6a5041a320da4fb5c"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_fonts.c",
+      "sha256": "291666a19b46234c17ab829bfbbdcb0dec8eccbcee5e372a5bdea633d7ea4815"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_hvline.c",
+      "sha256": "e63dad17dfe6501fb4b8f47ea7daaaa75c720a88016cfa9af39cc17523fac808"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_input_value.c",
+      "sha256": "fd6f4f7b2911bffa36677e6f3cceaa7f40dc0dd8ca589adeec2248354dc3c0bd"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_intersection.c",
+      "sha256": "ed81a18801dfc27220f09162d8ec2a74cc76467bf672431dd6fac9bde66b46c4"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_kerning.c",
+      "sha256": "c249d6394de157f6c2914bfafcca9bbcd09197fdac96c36a1d9877c8155e5ccc"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_line.c",
+      "sha256": "a26d7b7ab8ebe3d48a318a93ae618b04b02623c8d86ee02d18ed47b1f4f0302e"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_ll_hvline.c",
+      "sha256": "5cbb087c688c29b5704cbf4e2971711da2a945dc6c71d9bb5e868b434a2a97f0"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_message.c",
+      "sha256": "c8b6e01ccb075e7addeeae9551ccd74f65c29d238890adae13399c8dd9e6335d"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_polygon.c",
+      "sha256": "2f94dc6f32e0434664de8b30b24dbf98a348230db369b807226311828f6e0249"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_selection_list.c",
+      "sha256": "4bd54750282d1fb4ff96e684e1fde2beb3eb63e86a9bf4b048add1c65bf9b5a9"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8g2_setup.c",
+      "sha256": "80bf40f40e35ab010d33ac8bebb9a7035c6293645f6f6b662a31a9fe52321d15"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8log.c",
+      "sha256": "0bfa9e69b8d60db7db4d2a56554f35df7fb2279389178dd3a1aafb9b9e144edf"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8log_u8g2.c",
+      "sha256": "c6bc655c973e30fa089df145d8ac9dcae64b8a91db0bd28fe12be18293e16bb0"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8log_u8x8.c",
+      "sha256": "e45ccc063f2b22a7037c8711fe19edc9ac443d0b501aa12668898f3600f556a2"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8.h",
+      "sha256": "41fc8cfb637ff518bc5837580f19067cfaaae8f2316de53711d30b2981a65538"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_8x8.c",
+      "sha256": "dc188d78d8bbb6880da35347d2959ae75cb7975fa1562d3e0777f4a7517c2f1f"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_byte.c",
+      "sha256": "7ddc7f9bf3225af6ec9cf9c9d82e6cccce71569e4fc41691ea244ec434193ff6"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_cad.c",
+      "sha256": "d01bb8c88a3d151936e67a0d685a5f65ac8db4d31e4fde2e0ede220c6831ec0c"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_capture.c",
+      "sha256": "36f3b20027f4dec2a48053e1f83034b559cd62723c74f3cabc956567de83d776"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_debounce.c",
+      "sha256": "8f2f43481076bd0454c99127d133db24208f9bc92659332e0c2ff76ab7b7e85d"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_display.c",
+      "sha256": "d910fd4a1e7ff55a38e5f266985cd66c891b104630190649f3f060efaa0fa888"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_a2printer.c",
+      "sha256": "114b822079175d860379184586a1e54397a9a5d6e222720bd8b26dcb32ab2438"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_gp1247ai.c",
+      "sha256": "ad863bb1d74ea7bc91ece5041f9974cbefe28ce2c7ff5dcf9c113ff0be669c5e"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_gp1287ai.c",
+      "sha256": "e65d45aa1a6a75b462a4bb01523bd5f0a24c49e81ad7e094faf9cb12be8ac3a0"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_gu800.c",
+      "sha256": "31e463a27dbc085d6ba5c1cf9bf96d3d3a054b7c148ec7fe36e607a6a89540d9"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_hd44102.c",
+      "sha256": "f54e2727553233d332af17e07c3914bd116daf23ae5053a5ae72200c0b6c7476"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_il3820_296x128.c",
+      "sha256": "96d76076feccdd8f7aa82ffc3eebc333571d5b449105e8533ac59d900be5f1a6"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ist3020.c",
+      "sha256": "502b690096a31eab38de0a8c04914f7cc7b85b6184db9843b7dd148a261d5c0a"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ist3088.c",
+      "sha256": "59f30172a56e4b19a04161c1f4ce21e175425be9264c6013f90fb89e46ee1e22"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ist7920.c",
+      "sha256": "836f98d58ebfdcf65e3628c9dc6748407e54c40b3d1bd1757182729c33294476"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ks0108.c",
+      "sha256": "70249d2f7ef6d1a91bb9f7c50b3bcbcdaf181a4985173b211f2efdba2ebee2f5"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_lc7981.c",
+      "sha256": "2bd1137e690637406dc3b461c2c368ce2fc184088caa0f04968b69dcf134d81a"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ld7032_60x32.c",
+      "sha256": "179aac9755610ccf8fe3b1580b7d1e5fedcb01e8cec0c75b274ae90d20ba18ba"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ls013b7dh03.c",
+      "sha256": "bcddc838877384bfa9c621591b413bead3b366df0fe94c2629f61ef35d70fe58"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_max7219.c",
+      "sha256": "f410de32688f9187ee58d4ae796dd3e4b703e51b3dd022ed133889c5a133c5a0"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_pcd8544_84x48.c",
+      "sha256": "0ea7cf00237d2c07a9b17b99f0eff1e02313d82a3ae2dcff4ab5a675122ed3ce"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_pcf8812.c",
+      "sha256": "257b6baf046dc946d9e81e07aeeee003746e03d79082017ffcb597e6773c7518"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_pcf8814_hx1230.c",
+      "sha256": "0e8d14c58887417b8f54611d4f6e230a3eb97300dc85f94c863aa402c6806715"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_s1d15300.c",
+      "sha256": "8bd3a13a897c90a65117c913927d41f63cd8e3f24399c55229ca9c73677e1f7a"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_s1d15721.c",
+      "sha256": "254967509b338808c9e07f61ab445d8f582eb0ce264c452ff86c2214c8e54205"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_s1d15e06.c",
+      "sha256": "3413480965327a9d80d2c4cf23b9801d5a34662f152e690a70bbd7981d20e7d0"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_sbn1661.c",
+      "sha256": "cc6b7a30089754a0b4c9548933e1b51df5dae98f6fc978ca0fe3f8909f36bc9e"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_sed1330.c",
+      "sha256": "3e159c0a3d82552368d1f58143ad6bd2e2d7a03b8cb1790cf497d155d3430e9b"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_sh1106_64x32.c",
+      "sha256": "85fa290b3ccce6248db3bd7d1e42c7b97a72479ada299c0a68976866c7483f6c"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_sh1106_72x40.c",
+      "sha256": "d7467d4b38de3ef64ee2222c92053e80062e05a05c333f2f33e83a143bdf09fc"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_sh1107.c",
+      "sha256": "ab90bcaf517e28089259a008731c392d75f56ed364c2be207cbdebf073f2e05b"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_sh1108.c",
+      "sha256": "86b426a7fcedda5f746f69cd3a730b348dabe171a06f8d0dab9bcd36a08a4ac3"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_sh1122.c",
+      "sha256": "68f0993cde61bd6d896150270be81ad93fb962af7f8e42c8063b27f4a5466750"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1305.c",
+      "sha256": "51755e9df8054ea6d19830199e72004447ab7b2d8f370d01e50cf66ebc143faf"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1306_128x32.c",
+      "sha256": "ad440ba67788159c01f7132c3b1f928d81f05a9daf61d90dcea8b3874304403d"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1306_128x64_noname.c",
+      "sha256": "dcfaf1582aca38fff9799a592b895ca86680b1c0d34822074d24d2ea5c8cbeac"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1306_2040x16.c",
+      "sha256": "f8aef778d289e54a13c2d9a43c949d84bb9ebfbe76d291f31a2fd99b3b25d58f"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1306_48x64.c",
+      "sha256": "40a4762b6a94349510e9882bcfe75ce31b6b5585822f1bbfbf4e521baba37b30"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1306_64x32.c",
+      "sha256": "4a2d887df33a60ef307de04b8492246759a4b2fc9356bb146fcc86440ff52732"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1306_64x48.c",
+      "sha256": "97a0d1b0b47706d37ad47ef9e997cb77e325eff2ec1aab420fff7cdde9e48a4d"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1306_72x40.c",
+      "sha256": "a5bda777b556c215dd2e41e01b75eec06491c5af93b41403738177a80c13fe23"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1306_96x16.c",
+      "sha256": "35c44213198e16a0bb30bd5f7e3bb4f27e7a5ec1cb23efed015bfb06e3926727"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1306_96x40.c",
+      "sha256": "5bb510c189bfa5671bda630db44965e7b986facc9076b2b2c8c9a534cea7b294"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1309.c",
+      "sha256": "c004671b3907c95125b4cc4fe614e539fcee31c0172d45a75434d8b348c6a880"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1316.c",
+      "sha256": "d3f5851b2dcdadbe6efeec84bd3e7a8c58a530fa261d5a7aa7526227686afabb"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1317.c",
+      "sha256": "2b9c4ebff60743b10a5c51e01e6200b3a855418d9e3735f2e0b80d216fe77694"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1318.c",
+      "sha256": "141434ba9c18bb7bc7114afa23431b8706bff383deb1f9cb97cf1883c73ad2c5"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1320.c",
+      "sha256": "a44a91c225c8228c41672be6bc81835dc77079de279f2e084c5370cdd5f3d5e2"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1322.c",
+      "sha256": "d544f60048f841ad64fe4b0979dc7c3735c957c386220ef47b84eedb20a91998"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1325.c",
+      "sha256": "674a68e1d3029add6406d576dbced9e04789edad0a82fa40145daa7b2c424283"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1326.c",
+      "sha256": "56d5cf063c3696e167af4301fe45daf4833d2ae56058ccb504da1b1354290fb0"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1327.c",
+      "sha256": "0794be6de697e736f12af0a58d36050748e15d83f537916e68dba44a65365839"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1329.c",
+      "sha256": "6886c7fd1e31146e79c2c088fcb1e98b4f79d3514eb30ec8df280b4ad539599f"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1362.c",
+      "sha256": "f445422d3f4a614bafc9553ce676b2b67a58cfb4ffa419fbcf27bfd493dc5997"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1606_172x72.c",
+      "sha256": "83be8d01c335a63549a0563053de983f81e170ec2aaae8d2b00797d5d7e32574"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_ssd1607_200x200.c",
+      "sha256": "3aa62099183c38b0d6177a56392177605449793d596479b7064a2c30e761cb40"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st7511.c",
+      "sha256": "a24147246aa091484b9224a9f57461c4546b78f9e597748d83e1fe09a1efe64b"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st75160.c",
+      "sha256": "062d667c6a0e440695e3680b66e7277e57998cf92af167aef02da9f436aed834"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st75256.c",
+      "sha256": "0c9999d7fd8c5c1eb0b9f7fba2c08c8bc5f31ba639cd7fc99881920d6c610b9b"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st7528.c",
+      "sha256": "6dcdb9e0a02114c5e8fc933f1a1b2bebad0a92cb0c73a84c7d14227b32668319"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st75320.c",
+      "sha256": "f5d435fdee444d6ca6b8fa7b8b0269e080218b57d9cacac3296592d7e45902c6"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st7539.c",
+      "sha256": "a4bb0264879a8951e47798b68023ab712b211e94a229be253cd03cb607bcff59"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st7565.c",
+      "sha256": "abbc47370e55139b970d4a34d6d75b29a4c897342a0675844c0eb0e46292bec1"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st7567.c",
+      "sha256": "d511c1bc7dad4c02f2585d2aa6f3adabe55ed77834b7056957cb07a95a010515"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st7571.c",
+      "sha256": "f94528b379452ccf056349b7802c61aad7ac6322e5319dd438f7f498e333d08c"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st7586s_erc240160.c",
+      "sha256": "f3e029a7ecffb04dd4d9456efe6fa17539bb99d3837477abc100f131fac16c6a"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st7586s_jlx384160.c",
+      "sha256": "2ecdea07a48b6244e539e8fab063f98d90f958898f9a4cbd8b2b8834b052daac"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st7586s_s028hn118a.c",
+      "sha256": "442583940cceaa955d1eabbf74624ed28c3f8b78a7e379028f455af17650136a"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st7586s_ymc240160.c",
+      "sha256": "cc5d240ae005b0f10eb9ac0e86922edc9e827ee8783d2a466d35b10312e1270f"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st7588.c",
+      "sha256": "1bed147e711495eaa7e52aecf0fc9a7f829743ec5391e89d9b3b19cc6ed88fdf"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_st7920.c",
+      "sha256": "741ba95121d828c9ed33f627987aa12c97d6853d72ce70437ed45a306b5de233"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_t6963.c",
+      "sha256": "d8de22483cd24b5a18ba168aee5ce27f4b4c3f30a4c76df50dc17375d8179286"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_uc1601.c",
+      "sha256": "46035f634ede8124fd47e9d186ec85d047dc56b6b901ae5eda832e50df341266"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_uc1604.c",
+      "sha256": "ae40208fa5092a07f6980a514456351003904ea01f5b8d1e545e5eb8a261232a"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_uc1608.c",
+      "sha256": "c75cc76ee16075ff69eada3b5061eec32d352871ec34ccd24c7d6ed8fb8c52d0"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_uc1609.c",
+      "sha256": "9d84c4a79a141241548651f51cb48fcc759a106fdbc2abf41c30e03d0879ec6d"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_uc1610.c",
+      "sha256": "95ccd441b20280ed9afd41c1afb7340c8362e32994d1f5d0e6689ed8cc542961"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_uc1611.c",
+      "sha256": "1ce749c7c5827d84bf67db02801fcc0ed56785e3c063679953cc51b3c00e877e"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_uc1617.c",
+      "sha256": "fb2d921fc0a35175f8960139e1bfbe07449704e974343e5bfb060792b641e5d6"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_uc1638.c",
+      "sha256": "b1e83bebc96335a4deb885549d9a4e2b9af2fd4d1045dfa4490f474197787598"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_uc1701_dogs102.c",
+      "sha256": "8e0da4f7b8a436cdda5882e003749add2825a599ed2a90acaeab0e5b6b610ae4"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_d_uc1701_mini12864.c",
+      "sha256": "bbd7a9958bef00e4ab14a96cf4a4a02156ffc7dd860732fd89e3514fdcfae5c4"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_fonts.c",
+      "sha256": "aac8896e39d6e5cfa0f2d7418c1bd568e696189ef301903b463c53c1fa6ec9b3"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_gpio.c",
+      "sha256": "884bc9f983276256faced6767a942ca5e79a03568b284165c0d1c4f855b0d630"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_input_value.c",
+      "sha256": "4816e93ae16c41409497ea8b09facc05f4afc297a7868b2655aba12b755108ca"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_message.c",
+      "sha256": "d24fa19f1f37426b44138a4c22cb9d0342626d735faf2e0a104e9d7dbb95ef18"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_selection_list.c",
+      "sha256": "e1290066f6ac1a4b6b7d5c86b6082bb8186ba63685c173213f74811514f7231b"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_setup.c",
+      "sha256": "3f50da0b74fea01a3386a3192d412aceadc09cac3e5cbb0b879c1a7e80a38886"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_string.c",
+      "sha256": "20cfe514ca42bfa22fb5a52aaf9bac3ab8b1e69c994df3fdeb73e3353e9687cc"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_u16toa.c",
+      "sha256": "5a6877ecb5b0665a48f952588e5bdd173407cf4dac399bcfa75ba64dad412b42"
+    },
+    {
+      "path": "lib/U8g2/src/clib/u8x8_u8toa.c",
+      "sha256": "bcbaaf9c4d2f8d067f78d7e2826003282a7c467a4764a931d8f67fd28d384e21"
+    },
+    {
+      "path": "lib/XPowersLib/src/XPowersAXP192.tpp",
+      "sha256": "64382f7ba30a09341331a8e07e4c9b6d50c95bfb5f488a47575303762ca854b9"
+    },
+    {
+      "path": "lib/XPowersLib/src/XPowersAXP202.tpp",
+      "sha256": "f597254d75b2dc2c19894090ae0abb631144c7b216fc85f5cc6a05eb75f8379b"
+    },
+    {
+      "path": "lib/XPowersLib/src/XPowersAXP2101.tpp",
+      "sha256": "9303116659a7bb49932cf4545f04e492e684083fc3e8b683db0062cee123cc47"
+    },
+    {
+      "path": "lib/XPowersLib/src/XPowersCommon.tpp",
+      "sha256": "e3a2d2f67ad70c037f9693a077fea6342cf075ea48dc5e383d1aa81eddafc141"
+    },
+    {
+      "path": "lib/XPowersLib/src/XPowersLib.h",
+      "sha256": "4dbb11e2151566ec37868c855cf5cbbc7d9a8b836245fcf661c0c20c31c04318"
+    },
+    {
+      "path": "lib/XPowersLib/src/XPowersLibInterface.cpp",
+      "sha256": "87af4ae5ec20d8196f25bb85f35ba4364c740bf92d4367362969c9274415f43f"
+    },
+    {
+      "path": "lib/XPowersLib/src/XPowersLibInterface.hpp",
+      "sha256": "c6479a1037ebcb47b341b351ba6035320412dbd89a6a44b6949b6505c65feca4"
+    },
+    {
+      "path": "lib/XPowersLib/src/XPowersParams.hpp",
+      "sha256": "6be6d999b365c605e14fb061a08f2df41e613f626c713c83171bb9d0e20a425c"
+    },
+    {
+      "path": "lib/XPowersLib/src/REG/AXP192Constants.h",
+      "sha256": "d6f3704c3263290689b4a70832c5f425965bfc4bec15d7ed7d82aecf3f07f9c1"
+    },
+    {
+      "path": "lib/XPowersLib/src/REG/AXP202Constants.h",
+      "sha256": "72f61be354bcc68728c928b841313f5af1a8f514befdab7bd370a8e2604ddb17"
+    },
+    {
+      "path": "lib/XPowersLib/src/REG/AXP2101Constants.h",
+      "sha256": "322f740852177c05429fcd3ca289e100ea33222502d3bba6bedf64ccebf9fb2d"
+    },
+    {
+      "path": "lib/XPowersLib/src/REG/AXP216Constants.h",
+      "sha256": "1d7cf5075073848919956a77c0f00bcdcb16641b626f959be3b6bc967c85925e"
+    }
+  ]
+}

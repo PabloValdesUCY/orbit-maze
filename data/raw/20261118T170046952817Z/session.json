@@ -1,0 +1,15 @@
+{
+  "session": "20261118T170046952817Z",
+  "port": "COM3",
+  "seconds_per_class": 30,
+  "status": "incomplete",
+  "device": {
+    "protocol": "imu1",
+    "model_run_id": "untrained",
+    "pmu_ready": true,
+    "imu_ready": true,
+    "oled_initialized": true
+  },
+  "gestures": {},
+  "notes": ""
+}

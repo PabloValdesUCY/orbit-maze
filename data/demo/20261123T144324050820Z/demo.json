@@ -1,0 +1,211 @@
+{
+  "demo_id_utc": "20261123T144324050820Z",
+  "status": "complete",
+  "device": {
+    "protocol": "imu1",
+    "model_run_id": "20261123T144139418921Z",
+    "pmu_ready": true,
+    "imu_ready": true,
+    "oled_initialized": true
+  },
+  "model_sha256": "29bfb9ba63ae31360573aa89defca6d76cd45b2ac6a36d5c97477380dcfc32bd",
+  "port": "COM3",
+  "gestures": {
+    "rest": {
+      "samples": 1056,
+      "elapsed_seconds": 12.0,
+      "gaps_over_100ms": 0,
+      "prediction_counts": {
+        "rest": 10,
+        "rotation": 0,
+        "translation": 0
+      },
+      "predictions": [
+        {
+          "class": "rest",
+          "end_ms": 75011,
+          "span_ms": 1140
+        },
+        {
+          "class": "rest",
+          "end_ms": 76131,
+          "span_ms": 1110
+        },
+        {
+          "class": "rest",
+          "end_ms": 77281,
+          "span_ms": 1140
+        },
+        {
+          "class": "rest",
+          "end_ms": 78401,
+          "span_ms": 1110
+        },
+        {
+          "class": "rest",
+          "end_ms": 79551,
+          "span_ms": 1140
+        },
+        {
+          "class": "rest",
+          "end_ms": 80671,
+          "span_ms": 1110
+        },
+        {
+          "class": "rest",
+          "end_ms": 81821,
+          "span_ms": 1140
+        },
+        {
+          "class": "rest",
+          "end_ms": 82941,
+          "span_ms": 1110
+        },
+        {
+          "class": "rest",
+          "end_ms": 84091,
+          "span_ms": 1140
+        },
+        {
+          "class": "rest",
+          "end_ms": 85211,
+          "span_ms": 1110
+        }
+      ],
+      "median_window_span_ms": 1125.0,
+      "unconfirmed_tail_window": false,
+      "oled_text_visible": true
+    },
+    "rotation": {
+      "samples": 1056,
+      "elapsed_seconds": 12.0,
+      "gaps_over_100ms": 0,
+      "prediction_counts": {
+        "rest": 0,
+        "rotation": 10,
+        "translation": 0
+      },
+      "predictions": [
+        {
+          "class": "rotation",
+          "end_ms": 143151,
+          "span_ms": 1110
+        },
+        {
+          "class": "rotation",
+          "end_ms": 144301,
+          "span_ms": 1140
+        },
+        {
+          "class": "rotation",
+          "end_ms": 145421,
+          "span_ms": 1110
+        },
+        {
+          "class": "rotation",
+          "end_ms": 146571,
+          "span_ms": 1140
+        },
+        {
+          "class": "rotation",
+          "end_ms": 147691,
+          "span_ms": 1110
+        },
+        {
+          "class": "rotation",
+          "end_ms": 148841,
+          "span_ms": 1140
+        },
+        {
+          "class": "rotation",
+          "end_ms": 149961,
+          "span_ms": 1110
+        },
+        {
+          "class": "rotation",
+          "end_ms": 151111,
+          "span_ms": 1140
+        },
+        {
+          "class": "rotation",
+          "end_ms": 152261,
+          "span_ms": 1140
+        },
+        {
+          "class": "rotation",
+          "end_ms": 153381,
+          "span_ms": 1110
+        }
+      ],
+      "median_window_span_ms": 1125.0,
+      "unconfirmed_tail_window": false,
+      "oled_text_visible": true
+    },
+    "translation": {
+      "samples": 1056,
+      "elapsed_seconds": 12.0,
+      "gaps_over_100ms": 0,
+      "prediction_counts": {
+        "rest": 0,
+        "rotation": 0,
+        "translation": 10
+      },
+      "predictions": [
+        {
+          "class": "translation",
+          "end_ms": 170801,
+          "span_ms": 1140
+        },
+        {
+          "class": "translation",
+          "end_ms": 171921,
+          "span_ms": 1110
+        },
+        {
+          "class": "translation",
+          "end_ms": 173071,
+          "span_ms": 1140
+        },
+        {
+          "class": "translation",
+          "end_ms": 174191,
+          "span_ms": 1110
+        },
+        {
+          "class": "translation",
+          "end_ms": 175341,
+          "span_ms": 1140
+        },
+        {
+          "class": "translation",
+          "end_ms": 176461,
+          "span_ms": 1110
+        },
+        {
+          "class": "translation",
+          "end_ms": 177611,
+          "span_ms": 1140
+        },
+        {
+          "class": "translation",
+          "end_ms": 178761,
+          "span_ms": 1140
+        },
+        {
+          "class": "translation",
+          "end_ms": 179881,
+          "span_ms": 1110
+        },
+        {
+          "class": "translation",
+          "end_ms": 181031,
+          "span_ms": 1140
+        }
+      ],
+      "median_window_span_ms": 1140.0,
+      "unconfirmed_tail_window": false,
+      "oled_text_visible": true
+    }
+  },
+  "notes": "Last:(each movement)"
+}
