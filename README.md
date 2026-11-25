@@ -18,6 +18,8 @@ py -3.12 -m venv .venv
 
 Press **F** or **Enter** to start. In a level, **Q** and **R** turn left and right. **F** moves one tile in the arrow's direction and **Esc** opens the menu. Collect the key and reach the exit in each city. The Nicosia lantern patrol adds a timing challenge.
 
+In the main menu, click a city card or press **1**, **2** or **3** to select an unlocked level. Pafos unlocks Limasol when completed, and Limasol unlocks Nicosia. Selecting a locked city shows what to complete. The game remembers unlocks as soon as each level is cleared.
+
 ### Play wirelessly with the LilyGO
 
 Upload the current firmware once using a USB data cable. Power the LilyGO with a compatible battery or a USB power bank for a wireless demo. Connect the PC to the board's **OrbitMaze** Wi-Fi network with the demo password `orbit-maze-428`, then launch the game in Wi-Fi mode:

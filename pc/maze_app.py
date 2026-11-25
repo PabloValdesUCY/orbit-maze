@@ -1,5 +1,6 @@
 """Desktop interface and input routing for Orbit Maze."""
 from math import cos, pi, sin
+from functools import partial
 from pathlib import Path
 from queue import Empty, SimpleQueue
 from threading import Event, Thread
@@ -9,7 +10,8 @@ import tkinter as tk
 from maze_art import (ACCENT, DISPLAY, GOLD, HEIGHT, INK, LINE, MUTED,
                       PALETTES, PAPER, RED, WHITE, WIDTH, Scene, city_art,
                       diamond, gesture_icon, island_route)
-from maze_logic import DIRECTION_NAMES, LEVELS, GestureGate, Maze, load_game, save_game
+from maze_logic import (DIRECTION_NAMES, LEVELS, GestureGate, Maze, load_game, load_unlocks,
+                        save_game, save_unlock)
 
 SAVE_PATH = Path(__file__).resolve().parents[1] / 'data' / 'orbit_save.json'
 GESTURE_NAMES = {'rotation_left': 'Left turn', 'rotation_right': 'Right turn',
@@ -29,6 +31,8 @@ class OrbitMazeApp:
         self.screen = 'menu'
         self.notice = ''
         self.link_notice = ''
+        self.level_warning = ''
+        self.pending_level = None
         self.wireless = wireless
         self.saved_city = None
         try:
@@ -39,6 +43,13 @@ class OrbitMazeApp:
         if loaded:
             self.saved_city = loaded.level.name
         self.maze = loaded or Maze()
+        try:
+            unlocked = load_unlocks(save_path)
+            if self.maze.unlocked_through > unlocked:
+                save_unlock(save_path, self.maze.unlocked_through)
+            self.maze.unlocked_through = max(self.maze.unlocked_through, unlocked)
+        except OSError:
+            self.notice = 'Level unlocks could not be stored on this PC.'
         self.started = loaded is not None
         self.dirty = False
         self.exit_pending = False
@@ -78,6 +89,8 @@ class OrbitMazeApp:
         root.bind('<Control-s>', lambda _event: self.save())
         for key, action in (('q', 'rotation_left'), ('r', 'rotation_right'), ('f', 'translation')):
             root.bind(f'<KeyPress-{key}>', lambda _event, name=action: self.keyboard_action(name))
+        for index in range(len(LEVELS)):
+            root.bind(f'<KeyPress-{index+1}>', lambda _event, level=index: self.choose_level(level))
         if reader is not None:
             self.reader = Thread(target=reader, args=(self.messages, self.stop), daemon=True)
             self.reader.start()
@@ -146,16 +159,42 @@ class OrbitMazeApp:
         self.started = True
         self.screen = 'play'
         self.exit_pending = False
+        self.level_warning = ''
+        self.pending_level = None
         self.tutorial = self.maze.index == 0 and not self.tutorial_seen
         self.notice = 'Find the key, then head for the exit.'
         self.gate.reset()
         self.invalidate()
+
+    def choose_level(self, index):
+        if self.screen != 'menu':
+            return
+        self.exit_pending = False
+        if not self.maze.is_unlocked(index):
+            self.pending_level = None
+            self.level_warning = f'{LEVELS[index].name} is locked. Complete {LEVELS[index-1].name} first.'
+            self.invalidate()
+            return
+        if self.maze.index == index and not self.maze.cleared:
+            self.start()
+            return
+        if self.dirty and not self.maze.cleared and self.pending_level != index:
+            self.pending_level = index
+            self.level_warning = f'Unsaved progress. Save now or select {LEVELS[index].name} again to switch.'
+            self.invalidate()
+            return
+        self.maze.select_level(index)
+        self.motion = self.turn = None
+        self.dirty = True
+        self.start()
 
     def open_menu(self):
         self.screen = 'menu'
         self.tutorial = False
         self.exit_pending = False
         self.notice = ''
+        self.level_warning = ''
+        self.pending_level = None
         self.gate.reset()
         self.invalidate()
 
@@ -166,6 +205,8 @@ class OrbitMazeApp:
             self.start()
 
     def save(self):
+        self.level_warning = ''
+        self.pending_level = None
         try:
             save_game(self.save_path, self.maze)
         except OSError as error:
@@ -179,6 +220,8 @@ class OrbitMazeApp:
         self.invalidate()
 
     def exit_game(self):
+        self.level_warning = ''
+        self.pending_level = None
         if self.dirty:
             if self.screen != 'menu':
                 self.open_menu()
@@ -225,8 +268,14 @@ class OrbitMazeApp:
             return
         now = time.monotonic()
         ball, count, heading = self.maze.ball, self.maze.actions, self.maze.heading
+        unlocked = self.maze.unlocked_through
         angle = self.arrow_angle(now)
         self.notice = self.maze.apply(gesture)
+        if self.maze.unlocked_through > unlocked:
+            try:
+                save_unlock(self.save_path, self.maze.unlocked_through)
+            except OSError:
+                self.notice += ' Level access could not be saved on this PC.'
         if self.maze.ball != ball:
             self.motion = (self.ball_position(now, ball), self.maze.ball, now)
         if self.maze.heading != heading:
@@ -333,7 +382,7 @@ class OrbitMazeApp:
     def draw(self, now=None):
         now = time.monotonic() if now is None else now
         self.paint_pending = False
-        layout = (self.screen, self.maze.index, self.tutorial, self.maze.cleared,
+        layout = (self.screen, self.maze.index, self.tutorial, self.maze.cleared, self.maze.unlocked_through,
                   self.canvas.winfo_width(), self.canvas.winfo_height())
         if self.layout_key != layout:
             self.layout_key = layout
@@ -388,9 +437,10 @@ class OrbitMazeApp:
             c.itemconfigure('key', state='hidden' if game.has_key else 'normal')
             c.itemconfigure(fields['exit_tile'], fill='#cce6c0' if game.has_key else '#ede4cf')
             c.itemconfigure(fields['exit_label'], fill=ACCENT if game.has_key else MUTED)
-        notice = self.link_notice or self.notice or ('Hold still until Ready appears.' if self.port_state == 'connected'
-                                                     else 'Use Q, R and F or connect the LilyGO.')
-        c.itemconfigure(fields['notice'], text=notice, fill=RED if self.exit_pending else INK)
+        notice = self.level_warning or self.link_notice or self.notice or (
+            'Hold still until Ready appears.' if self.port_state == 'connected'
+            else 'Use Q, R and F or connect the LilyGO.')
+        c.itemconfigure(fields['notice'], text=notice, fill=RED if self.level_warning or self.exit_pending else INK)
         c.itemconfigure(fields['input'], text=f'Last input: {self.last_gesture}' if self.last_gesture else '')
 
     def draw_menu(self):
@@ -404,19 +454,29 @@ class OrbitMazeApp:
         s.text(57,179,'Across\nCyprus',49,color=WHITE,face=DISPLAY,weight='bold')
         s.text(60,310,'Guide the ball through three cities. Collect a key at each stop.',16,
                color='#d4e6e1',wrap=200)
-        s.text(34,450,'The route',26,face=DISPLAY,weight='bold')
+        s.text(34,450,'Choose a city',26,face=DISPLAY,weight='bold')
         for index, (level, caption) in enumerate(zip(LEVELS, (
             'Harbour Castle and mosaics', 'Molos promenade and marina', 'Venetian walls and city gate'
         ))):
             x = 34+222*index
             p = PALETTES[index]
+            unlocked = self.maze.is_unlocked(index)
+            base, over = (WHITE, '#e2eee5') if unlocked else ('#f1ece1', '#f1e1d2')
             s.round(x,493,211,186,14,SHADE)
-            s.round(x,489,211,186,14,WHITE)
+            surface = s.round(x,489,211,186,14,base)
             city_art(s,index,x+9,498,193,109)
             s.round(x+16,505,28,26,7,NIGHT)
             s.text(x+30,518,str(index+1),13,color=WHITE,align='center',weight='bold')
-            s.text(x+14,617,level.name,24,color=p.token,face=DISPLAY,weight='bold')
-            s.text(x+15,649,caption,12,color=MUTED)
+            s.text(x+14,617,level.name,24,color=p.token if unlocked else MUTED,face=DISPLAY,weight='bold')
+            if not unlocked:
+                s.round(x+164,505,30,28,7,NIGHT)
+                s.oval(x+174,510,10,12,'','#ffe3aa',1.6)
+                s.round(x+171,517,16,11,2,'#ffe3aa')
+                caption = f'Locked  •  Complete {LEVELS[index-1].name}'
+            s.text(x+15,649,caption,12,color=MUTED,weight='normal' if unlocked else 'bold')
+            callback = partial(self.choose_level, index)
+            self.clicks.append((x,489,x+211,675,callback))
+            self.hover_targets[callback] = surface, base, over
 
         s.round(714,101,372,578,20,SHADE)
         s.round(714,95,372,580,20,WHITE)

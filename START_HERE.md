@@ -103,6 +103,8 @@ In the maze, **turn left or right** to rotate the arrow 90° in that direction, 
 
 The route visits **Pafos**, **Limasol** and **Nicosia**, in that order. Pafos opens with a controls tutorial. Collect a key to open each exit. Slide again on the results screen to advance or, after winning in Nicosia, to start a new route directly in Pafos.
 
+In the main menu, click a city card or press **1**, **2** or **3** to choose that level. Completing Pafos unlocks Limasol. Completing Limasol unlocks Nicosia. A padlock marks each locked city, and selecting it shows which level to complete. Unlocks are recorded as soon as you finish a level. Use **Save game** to keep your current position and key.
+
 In Nicosia the lantern stays on the marked corridor. The game records the directions of successful moves and counts how often each direction follows the last one. When at least two observations support a legal next tile in the corridor, an outline shows the predicted tile briefly. The lantern can head toward it even if that reverses its patrol. After a reversal it follows its normal route for two steps. Getting caught takes you back to the entrance with your key. Saving stores the route state and up to 256 movement transitions locally in `data/orbit_save.json`.
 
 The original artwork is inspired by [Pafos Harbour and its mosaics](https://www.visitcyprus.com/discover-cyprus/regions-cities/pafos-regions-cities/pafos-paphos-city/), [the Molos seafront and marina](https://www.visitcyprus.com/wp-content/uploads/files/MAPS/CITY_TOUR_MAPS/Limassol_Map.pdf), and [Nicosia's Venetian walls and Famagusta Gate](https://www.nicosia.org.cy/en-GB/discover/cultural-centers/famagusta-gate/).

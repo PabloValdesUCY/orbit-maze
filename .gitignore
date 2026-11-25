@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 .vscode/
 data/orbit_save.json
+data/orbit_save.unlocks/
 data/.orbit-save-*.tmp
 data/.gesture-profile-*.tmp
 

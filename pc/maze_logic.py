@@ -84,6 +84,7 @@ class GestureGate:
 class Maze:
     def __init__(self):
         self.move_history = ()
+        self.unlocked_through = 0
         self.restart()
 
     def restart(self):
@@ -97,6 +98,16 @@ class Maze:
     @property
     def final_level(self):
         return self.index == len(LEVELS) - 1
+
+    def is_unlocked(self, index):
+        return 0 <= index < len(LEVELS) and index <= self.unlocked_through
+
+    def select_level(self, index):
+        if not self.is_unlocked(index):
+            return False
+        self.index = index
+        self.reset()
+        return True
 
     def reset(self):
         self.ball = self.level.position('S')
@@ -195,9 +206,7 @@ class Maze:
     def next_level(self):
         if not self.cleared or self.final_level:
             return False
-        self.index += 1
-        self.reset()
-        return True
+        return self.select_level(self.index + 1)
 
     def apply(self, action):
         if self.cleared:
@@ -228,12 +237,14 @@ class Maze:
             return 'Key collected. The exit is open.'
         if self.ball == self.exit:
             self.cleared = True
+            self.unlocked_through = max(self.unlocked_through, min(self.index + 1, len(LEVELS) - 1))
             return 'Maze complete!' if self.final_level else 'Level complete. Advance to continue.'
         return f'Moved {DIRECTION_NAMES[self.heading].lower()}.'
 
     def snapshot(self):
         return {'version': SAVE_VERSION, 'level': self.index, 'ball': list(self.ball),
                 'heading': self.heading, 'has_key': self.has_key, 'cleared': self.cleared,
+                'unlocked_through': self.unlocked_through,
                 'actions': self.actions, 'patrol_ms': int(self.patrol_ms), 'patrol_target': self.patrol_target,
                 'chase_cooldown': self.chase_cooldown, 'previous_direction': self.previous_direction,
                 'move_history': [list(pair) for pair in self.move_history]}
@@ -265,6 +276,11 @@ class Maze:
             raise ValueError('The saved game state is invalid.')
         if (game.ball == game.exit and not game.has_key) or game.cleared != (game.ball == game.exit):
             raise ValueError('The saved exit state is invalid.')
+        unlocked = saved.get('unlocked_through', game.index)
+        if type(unlocked) is not int or not 0 <= unlocked < len(LEVELS):
+            raise ValueError('The saved level access is invalid.')
+        reached = min(game.index + int(game.cleared), len(LEVELS) - 1)
+        game.unlocked_through = max(unlocked, reached)
         patrol_ms = saved.get('patrol_ms', 0)
         if type(patrol_ms) is not int or patrol_ms < 0:
             raise ValueError('The saved patrol time is invalid.')
@@ -317,3 +333,16 @@ def load_game(path: Path):
             return Maze.restore(json.load(file))
     except FileNotFoundError:
         return None
+
+
+def load_unlocks(path: Path):
+    directory = path.with_suffix('.unlocks')
+    return max((index for index in range(1, len(LEVELS))
+                if (directory / str(index)).is_file()), default=0)
+
+
+def save_unlock(path: Path, index):
+    # Level markers preserve access independently of the saved ball position.
+    directory = path.with_suffix('.unlocks')
+    directory.mkdir(parents=True, exist_ok=True)
+    (directory / str(index)).touch(exist_ok=True)
